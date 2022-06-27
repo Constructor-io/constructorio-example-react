@@ -1,0 +1,58 @@
+{
+  "name": "constructorio-react-example",
+  "version": "1.0.0",
+  "description": "A React sandbox example for integrating with Constructor",
+  "author": "constructor.io",
+  "license": "MIT",
+  "homepage": "https://constructor-io.github.io/constructorio-react-example/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Constructor-io/constructorio-react-example.git"
+  },
+  "dependencies": {
+    "@constructor-io/constructorio-client-javascript": "^2.27.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "version": "npm run deploy",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24"
+  }
+}
