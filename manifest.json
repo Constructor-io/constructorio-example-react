@@ -1,0 +1,15 @@
+{
+  "short_name": "constructorio-react-example",
+  "name": "Constructor React Example",
+  "icons": [
+    {
+      "src": "https://constructor.io/wp-content/uploads/2021/05/cropped-favicon-32x32-1-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#031B4E",
+  "background_color": "#ffffff"
+}

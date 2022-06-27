@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/constructorio-react-example/static/css/main.0570aaa6.css",
+    "main.js": "/constructorio-react-example/static/js/main.03289b88.js",
+    "index.html": "/constructorio-react-example/index.html",
+    "main.0570aaa6.css.map": "/constructorio-react-example/static/css/main.0570aaa6.css.map",
+    "main.03289b88.js.map": "/constructorio-react-example/static/js/main.03289b88.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0570aaa6.css",
+    "static/js/main.03289b88.js"
+  ]
+}
