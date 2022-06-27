@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Search from './components/Search/Search';
 
 function App() {
-  const defaultSearchTerm = 'shoes';
+  const defaultSearchTerm = 'dress';
 
   return (
     <div className="App p-5 max-w-7xl mx-auto">
