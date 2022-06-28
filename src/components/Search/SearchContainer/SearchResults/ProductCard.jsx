@@ -2,16 +2,16 @@ import React from 'react';
 
 function ProductCard({ product }) {
   const imageTagClassesLoading = 'w-[300px] transition-opacity opacity-0';
-  const imageTagClassesLoaded = 'w-[300px] transition-opacity opacity-100';
+  const imageTagClassesLoaded = 'w-[300px] h-full transition-opacity opacity-100';
 
   return (
     <div
-      className="product-card"
+      className="product-card flex flex-col items-center sm:block "
       data-cnstrc-item-id={ product.data.id }
       data-cnstrc-item-name={ product.value }
       data-cnstrc-item-variation-id={ product.data?.variation_id }
     >
-      <div className="mb-1 h-[225px]">
+      <div className="flex justify-center mb-1 ">
         <img
           className={ imageTagClassesLoading }
           src={ product.data.image_url }

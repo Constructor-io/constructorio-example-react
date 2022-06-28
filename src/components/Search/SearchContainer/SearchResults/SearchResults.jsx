@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import GroupFilters from '../../../Filters/GroupFilters';
 import FacetFilters from '../../../Filters/FacetFilters';
 import { loadStatuses } from '../../../../utils/constants';
 
 function SearchResults(props) {
+  const [buttonToggle, setButtonToggle] = useState(false);
+
   const {
     items,
     loadMoreStatus,
@@ -14,18 +16,34 @@ function SearchResults(props) {
     groups,
     facets,
   } = props;
-  const numResultsPerPage = 20;
+  const numResultsPerPage = 21;
 
   return (
     <div className="flex pb-10">
-      <div id="search-filters" className="w-[200px] mr-5">
+      <div id="search-filters" className="w-[200px] block sm:hidden mr-5 absolute">
+        <button type="button" className="text-bold" onClick={ () => setButtonToggle((state) => !state) }>
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+          </svg>
+        </button>
+        {buttonToggle
+       && (
+       <div className="bg-white">
+         <GroupFilters groups={ groups } />
+         <FacetFilters facets={ facets } />
+       </div>
+       )}
+      </div>
+      <div id="search-filters" className="w-[200px] hidden sm:block mr-5">
         <GroupFilters groups={ groups } />
         <FacetFilters facets={ facets } />
       </div>
-      <div className="flex flex-col grow">
+      <div className="flex flex-col grow mt-8">
         <div
           id="search-results"
-          className="mb-4 grid grid-cols-[repeat(3,225px)] lg:grid-cols-[repeat(4,225px)] gap-y-6 place-content-start justify-between"
+          className="mb-4 flex flex-col sm:flex-row flex-wrap sm:grid sm:grid-cols-[repeat(2,225px)]
+            lg:grid-cols-[repeat(4,225px)] auto-rows-max justify-between gap-y-6 place-content-center
+            sm:place-content-start sm:justify-center gap-x-4"
           data-cnstrc-search
           data-cnstrc-num-results={ totalResults }
         >

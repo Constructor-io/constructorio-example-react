@@ -29,13 +29,14 @@ function SearchHeader(props) {
   };
 
   return (
-    <form id="search-form" onSubmit={ submitSearch } className="flex justify-between mb-5">
-      <a href={ process.env.PUBLIC_URL } rel="nofollow">
+    <form id="search-form" onSubmit={ submitSearch } className="flex flex-col sm:flex-row justify-between mb-5 sm:ml-auto sm:mr-auto">
+      <a href={ process.env.PUBLIC_URL } rel="nofollow" className="mb-2 sm:mb-0">
         <img width="180" height="40" src="https://constructor.io/wp-content/uploads/2018/11/group-1.svg" alt="" />
       </a>
       { loadStatus !== loadStatuses.LOADING && (
         <input
-          className="bg-gray-200 w-80 border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-800"
+          className="bg-gray-200 w-80 border-2 border-gray-200 rounded py-2 px-4 text-gray-700
+            leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-2 sm:mb-0"
           id="search-input"
           value={ searchTerm }
           placeholder="Search..."
