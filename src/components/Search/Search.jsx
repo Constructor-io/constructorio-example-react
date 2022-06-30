@@ -63,7 +63,12 @@ function Search() {
 
   return (
     <>
-      <SearchHeader sortOptions={ sortOptions } loadStatus={ loadStatus } />
+      <SearchHeader
+        sortOptions={ sortOptions }
+        loadStatus={ loadStatus }
+        facets={ facets }
+        groups={ groups }
+      />
       <SearchContainer
         items={ items }
         loadStatus={ loadStatus }

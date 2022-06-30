@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductCard from './ProductCard';
 import GroupFilters from '../../../Filters/GroupFilters';
 import FacetFilters from '../../../Filters/FacetFilters';
 import { loadStatuses } from '../../../../utils/constants';
 
 function SearchResults(props) {
-  const [buttonToggle, setButtonToggle] = useState(false);
-
   const {
     items,
     loadMoreStatus,
@@ -20,20 +18,6 @@ function SearchResults(props) {
 
   return (
     <div className="flex pb-10">
-      <div id="search-filters" className="w-full block sm:hidden sm:mr-5 absolute">
-        <button type="button" className="text-bold" onClick={ () => setButtonToggle((state) => !state) }>
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
-          </svg>
-        </button>
-        {buttonToggle
-       && (
-       <div className="bg-white">
-         <GroupFilters groups={ groups } />
-         <FacetFilters facets={ facets } />
-       </div>
-       )}
-      </div>
       <div id="search-filters" className="w-[200px] hidden sm:block mr-5">
         <GroupFilters groups={ groups } />
         <FacetFilters facets={ facets } />
