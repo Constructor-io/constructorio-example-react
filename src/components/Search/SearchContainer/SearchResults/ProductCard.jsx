@@ -6,7 +6,7 @@ function ProductCard({ product }) {
 
   return (
     <div
-      className="product-card flex flex-col items-center sm:block "
+      className="product-card flex flex-col items-center sm:block"
       data-cnstrc-item-id={ product.data.id }
       data-cnstrc-item-name={ product.value }
       data-cnstrc-item-variation-id={ product.data?.variation_id }

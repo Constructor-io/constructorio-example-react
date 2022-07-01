@@ -50,56 +50,49 @@ function SearchHeader(props) {
         />
       ) }
 
-      <div className="flex mx-auto">
+      <div className="flex sm:block mx-auto sm:mx-0">
         <div>
           {groups.length && facets.length && (
-          <div id="search-filters" className="sm:hidden sm:mr-40">
-            <button type="button" className="text-bold flex" onClick={ () => setButtonToggle((state) => !state) }>
-              <span className="mr-2">Filter</span>
-              {buttonToggle
-                ? (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={ 2 }
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-
-                )
-                : (
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
-                  </svg>
-                )}
-
+          <div id="search-filters" className="sm:hidden sm:mr-40 text-lg m-2 p-2 border-2 rounded-lg">
+            <button type="button" className="text-bold flex items-center" onClick={ () => setButtonToggle((state) => !state) }>
+              <svg
+                className="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+              </svg>
+              <span className="mx-2">Filter</span>
             </button>
-            {/* <div className="bg-white border-2 z-10"> */}
               {buttonToggle
                 && (
-                <div className="bg-white border-2 z-10">
+                <div className="bg-white border-t-2 border-b-2 z-10 p-4 absolute w-full h-full top-0 left-0">
+                  <button type="button" className="text-bold flex items-center absolute right-0 mr-4" onClick={ () => setButtonToggle((state) => !state) }>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={ 2 }
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
                   <GroupFilters groups={ groups } />
                   <FacetFilters facets={ facets } />
                 </div>
                 )}
-            {/* </div> */}
           </div>
           )}
         </div>
 
-        <div>
+        <div className="m-2 p-2 border-2 rounded-lg">
           {sortOptions?.length > 0 && (
           <select onChange={ onChangeSorting } value={ selectedSort }>
             {sortOptions.map((sortOption) => (
