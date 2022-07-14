@@ -45,6 +45,15 @@ export const fetchProducts = async () => {
   return response.response;
 };
 
+export const fetchAutoCompleteResults = (query) => (
+  cioClient.autocomplete.getAutocompleteResults(query, {
+    resultsPerSection: {
+      Products: 5,
+      'Search Suggestions': 10,
+    },
+  })
+);
+
 export const loadMoreProducts = async (currentPage, totalResults) => {
   if (20 * currentPage >= totalResults) {
     return false;
