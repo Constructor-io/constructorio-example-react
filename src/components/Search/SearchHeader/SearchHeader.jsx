@@ -61,7 +61,7 @@ function SearchHeader(props) {
       ) }
 
       <div className="flex sm:block mx-auto sm:mx-0 w-full sm:w-auto">
-        {groups.length && facets.length && (
+        {(groups.length || facets.length) && (
           <div id="search-filters" className="w-1/2 sm:hidden sm:mr-40 text-lg m-2 ml-0 sm:ml-2 border-2 rounded-lg">
             <button type="button" className="p-2 w-full h-full text-bold flex items-center" onClick={ () => onFilterButtonToggle() }>
               <svg
@@ -74,8 +74,7 @@ function SearchHeader(props) {
               </svg>
               <span className="mx-2">Filter</span>
             </button>
-              {filterButtonToggle
-                && (
+              {filterButtonToggle && (
                 <div className="bg-white border-t-2 border-b-2 z-10 p-4 absolute w-full h-full top-0 left-0 overflow-y-auto">
                   <button type="button" className="text-bold flex items-center absolute right-0 mr-4" onClick={ () => onFilterButtonToggle() }>
                     <svg
@@ -96,7 +95,7 @@ function SearchHeader(props) {
                   <GroupFilters groups={ groups } />
                   <FacetFilters facets={ facets } />
                 </div>
-                )}
+              )}
           </div>
         )}
 
