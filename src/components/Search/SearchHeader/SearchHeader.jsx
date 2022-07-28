@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { loadStatuses } from '../../../utils/constants';
-import AutocompleteSearch from '../../Autocomplete';
+import AutocompleteSearch from '../../AutocompleteSearch';
 
 function SearchHeader(props) {
   const { sortOptions, loadStatus } = props;

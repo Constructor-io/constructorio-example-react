@@ -3,13 +3,14 @@
 
 import { useCombobox } from 'downshift';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchAutoCompleteResults } from '../../utils';
 import { loadStatuses } from '../../utils/constants';
 
 function AutocompleteSearch(props) {
   const { searchTerm, setSearchTerm } = props;
+  const navigate = useNavigate();
   const [status, setStatus] = useState();
-
   const [products, setProducts] = useState([]);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
@@ -22,13 +23,14 @@ function AutocompleteSearch(props) {
     getInputProps,
     getComboboxProps,
   } = useCombobox({
-    items: [...products, ...searchSuggestions],
+    items: [...searchSuggestions, ...products],
     itemToString,
     onInputValueChange: async ({ inputValue }) => {
       setSearchTerm(inputValue);
     },
     onSelectedItemChange({ selectedItem }) {
       setSearchTerm(selectedItem.value);
+      navigate(`?q=${selectedItem.value}`);
     },
   });
 
@@ -84,7 +86,7 @@ function AutocompleteSearch(props) {
             <div className="basis-1/3">
               {searchSuggestions.map((item, index) => (
                 <li
-                  className="mb-1"
+                  className="mb-1 cursor-pointer hover:underline"
                   key={ `${item.value} ${item.data?.id} ` }
                   { ...getItemProps({ item, index }) }
                 >
@@ -99,14 +101,14 @@ function AutocompleteSearch(props) {
                 <li
                   className="basis-1/3 flex flex-col content-center space-x-2"
                   key={ `${item.value} ${item.data?.id} ` }
-                  { ...getItemProps({ item, index }) }
+                  { ...getItemProps({ item, index: (index + searchSuggestions.length) }) }
                 >
-                  <a href="'" className="hover:underline">
+                  <div className="hover:underline">
                     <img width="200" src={ item.data?.image_url } alt="" />
                     <div className="text-sm">
                       {item.value}
                     </div>
-                  </a>
+                  </div>
                 </li>
               ))}
             </div>
