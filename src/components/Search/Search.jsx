@@ -62,8 +62,13 @@ function Search() {
   };
 
   return (
-    <>
-      <SearchHeader sortOptions={ sortOptions } loadStatus={ loadStatus } />
+    <div className="text-lg sm:text-base">
+      <SearchHeader
+        sortOptions={ sortOptions }
+        loadStatus={ loadStatus }
+        facets={ facets }
+        groups={ groups }
+      />
       <SearchContainer
         items={ items }
         loadStatus={ loadStatus }
@@ -75,7 +80,7 @@ function Search() {
         loadMoreStatus={ loadMoreStatus }
         loadMoreProducts={ loadMoreProductsAndSetState }
       />
-    </>
+    </div>
   );
 }
 
