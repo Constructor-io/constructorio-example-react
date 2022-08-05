@@ -10,6 +10,7 @@ import { loadStatuses } from '../../utils/constants';
 function AutocompleteSearch(props) {
   const { searchTerm, setSearchTerm } = props;
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState();
   const [products, setProducts] = useState([]);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -74,18 +75,19 @@ function AutocompleteSearch(props) {
         />
       </div>
       {isOpen && !!(products.length || searchSuggestions.length) && (
-      <ul
-        { ...getMenuProps() }
-        className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-10%] flex gap-4 sm:gap-2"
-      >
-        {status === loadStatuses.LOADING ? (
-          <li>...Loading</li>
-        ) : (
-          <>
+        <div data-cnstrc-autosuggest>
+          <ul
+            { ...getMenuProps() }
+            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-10%] flex gap-4 sm:gap-2"
+          >
+
             {!!searchSuggestions.length && (
             <div className="basis-1/3">
               {searchSuggestions.map((item, index) => (
                 <li
+                  data-cnstrc-item-section="Search Suggestions"
+                  data-cnstrc-item-name={ item.value }
+                  data-cnstrc-item-id={ item.data?.id }
                   className="mb-1 cursor-pointer hover:underline"
                   key={ `${item.value} ${item.data?.id} ` }
                   { ...getItemProps({ item, index }) }
@@ -99,6 +101,9 @@ function AutocompleteSearch(props) {
             <div className="basis-2/3 grid gap-4 grid-cols-3">
               {products.map((item, index) => (
                 <li
+                  data-cnstrc-item-section="Products"
+                  data-cnstrc-item-name={ item.value }
+                  data-cnstrc-item-id={ item.data?.id }
                   className="basis-1/3 flex flex-col content-center space-x-2"
                   key={ `${item.value} ${item.data?.id} ` }
                   { ...getItemProps({ item, index: (index + searchSuggestions.length) }) }
@@ -112,9 +117,9 @@ function AutocompleteSearch(props) {
                 </li>
               ))}
             </div>
-          </>
-        )}
-      </ul>
+          </ul>
+        </div>
+
       )}
     </div>
   );
