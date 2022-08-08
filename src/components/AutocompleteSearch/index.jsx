@@ -5,13 +5,10 @@ import { useCombobox } from 'downshift';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchAutoCompleteResults } from '../../utils';
-import { loadStatuses } from '../../utils/constants';
 
 function AutocompleteSearch(props) {
   const { searchTerm, setSearchTerm } = props;
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
-  const [status, setStatus] = useState();
   const [products, setProducts] = useState([]);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
@@ -40,18 +37,15 @@ function AutocompleteSearch(props) {
     if (!searchTerm) {
       setProducts([]);
       setSearchSuggestions([]);
-      setStatus();
     } else {
       (async () => {
-        setStatus(loadStatuses.LOADING);
         timeout = setTimeout(async () => {
           try {
             const res = await fetchAutoCompleteResults(searchTerm);
-            setStatus(loadStatuses.SUCCESS);
             setProducts(res.sections.Products);
             setSearchSuggestions(res.sections['Search Suggestions']);
           } catch (error) {
-            setStatus(loadStatuses.FAILED);
+            // do nothing
           }
         }, 300);
       })();
@@ -78,7 +72,7 @@ function AutocompleteSearch(props) {
         <div data-cnstrc-autosuggest>
           <ul
             { ...getMenuProps() }
-            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-10%] flex gap-4 sm:gap-2"
+            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-10%] flex gap-4 sm:gap-2 border"
           >
 
             {!!searchSuggestions.length && (

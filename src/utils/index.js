@@ -48,7 +48,7 @@ export const fetchProducts = async () => {
 export const fetchAutoCompleteResults = (query) => (
   cioClient.autocomplete.getAutocompleteResults(query, {
     resultsPerSection: {
-      Products: 5,
+      Products: 6,
       'Search Suggestions': 10,
     },
   })
