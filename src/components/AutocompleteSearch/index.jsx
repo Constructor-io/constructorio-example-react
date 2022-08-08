@@ -62,7 +62,8 @@ function AutocompleteSearch(props) {
         <input
           { ...getInputProps() }
           value={ searchTerm }
-          className="bg-gray-200 w-80 border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-800"
+          className="bg-gray-200 w-full sm:w-80 border-2 border-gray-200 rounded py-2 px-4 text-gray-700
+          leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-2 sm:mb-0"
           id="search-input"
           placeholder="Search..."
           data-cnstrc-search-input

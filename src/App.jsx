@@ -6,7 +6,7 @@ function App() {
   const defaultSearchTerm = 'shoes';
 
   return (
-    <div className="App p-5 max-w-7xl mx-auto">
+    <div className="App p-5 max-w-lg sm:max-w-7xl mx-auto">
       <Routes>
         <Route
           path="/search"

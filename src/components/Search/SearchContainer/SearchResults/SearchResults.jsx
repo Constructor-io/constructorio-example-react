@@ -14,18 +14,20 @@ function SearchResults(props) {
     groups,
     facets,
   } = props;
-  const numResultsPerPage = 20;
+  const numResultsPerPage = 21;
 
   return (
     <div className="flex pb-10">
-      <div id="search-filters" className="w-[200px] mr-5">
+      <div id="search-filters" className="w-[200px] hidden sm:block mr-5">
         <GroupFilters groups={ groups } />
         <FacetFilters facets={ facets } />
       </div>
-      <div className="flex flex-col grow">
+      <div className="flex flex-col grow mt-8">
         <div
           id="search-results"
-          className="mb-4 grid grid-cols-[repeat(3,225px)] lg:grid-cols-[repeat(4,225px)] gap-y-6 place-content-start justify-between"
+          className="mb-4 flex flex-col sm:flex-row flex-wrap sm:grid sm:grid-cols-[repeat(2,225px)]
+            lg:grid-cols-[repeat(4,225px)] auto-rows-max justify-between gap-y-6 place-content-center
+            sm:place-content-start sm:justify-center gap-x-4 items-center"
           data-cnstrc-search
           data-cnstrc-num-results={ totalResults }
         >
