@@ -1,21 +1,33 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Search from './components/Search/Search';
+import Browse from './components/Browse';
+
+import Layout from './Layout';
 
 function App() {
-  const defaultSearchTerm = 'shoes';
-
   return (
     <div className="App p-5 max-w-lg sm:max-w-7xl mx-auto">
       <Routes>
         <Route
-          path="/search"
-          element={ <Search /> }
-        />
-        <Route
-          path="*"
-          element={ <Navigate to={ `/search?q=${defaultSearchTerm}` } replace /> }
-        />
+          path="/"
+          element={ <Layout /> }
+        >
+
+          <Route
+            path="search"
+            element={ <Search /> }
+          />
+          <Route
+            path="browse"
+            element={ <Browse /> }
+          >
+            <Route
+              path=":groupId"
+              element={ <Browse /> }
+            />
+          </Route>
+        </Route>
       </Routes>
     </div>
   );

@@ -38,7 +38,7 @@ export function parseUrlParameters() {
   return searchResultsParameters;
 }
 
-export const fetchProducts = async () => {
+export const fetchSearchResults = async () => {
   const { query, parameters } = parseUrlParameters();
   const response = await cioClient.search.getSearchResults(query, parameters);
 
@@ -54,7 +54,7 @@ export const fetchAutoCompleteResults = (query) => (
   })
 );
 
-export const loadMoreProducts = async (currentPage, totalResults) => {
+export const loadMoreSearchResults = async (currentPage, totalResults) => {
   if (20 * currentPage >= totalResults) {
     return false;
   }
@@ -64,6 +64,13 @@ export const loadMoreProducts = async (currentPage, totalResults) => {
     query,
     { ...parameters, page: currentPage + 1 },
   );
+
+  return response.response;
+};
+
+export const fetchBrowseReults = async (filterName, filterValue) => {
+  const { parameters } = parseUrlParameters();
+  const response = await cioClient.browse.getBrowseResults(filterName, filterValue, parameters);
 
   return response.response;
 };

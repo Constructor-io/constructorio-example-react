@@ -20,7 +20,7 @@ function FacetFilters(props) {
       }
     });
     setChecked(tmpChecked);
-  }, []);
+  }, [facets]);
 
   const onFacetOptionSelect = (event) => {
     const facetIdSplit = event?.target?.id?.split('|');
@@ -41,7 +41,7 @@ function FacetFilters(props) {
       if (newValue) {
         params.set(filterKey, newValue);
       }
-      navigate({ search: params.toString() });
+      navigate({ search: params.toString() }, { replace: true });
     }
   };
 
