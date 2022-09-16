@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useCombobox } from 'downshift';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchAutoCompleteResults } from '../../utils';
 import { loadStatuses } from '../../utils/constants';
 
 function AutocompleteSearch() {
   const [params] = useSearchParams();
+  const location = useLocation();
   const query = params.get('q');
   const [searchTerm, setSearchTerm] = useState(query || '');
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function AutocompleteSearch() {
     getItemProps,
     getInputProps,
     getComboboxProps,
+    toggleMenu,
   } = useCombobox({
     items: [...searchSuggestions, ...products],
     itemToString,
@@ -30,13 +32,14 @@ function AutocompleteSearch() {
     },
     onSelectedItemChange({ selectedItem }) {
       setSearchTerm(selectedItem.value);
-      navigate(`?q=${selectedItem.value}`);
+      navigate(`/search?q=${selectedItem.value}`);
     },
   });
 
   const submitSearch = (e) => {
     e.preventDefault();
     navigate(`/search?q=${searchTerm}`);
+    toggleMenu();
   };
 
   let timeout;
@@ -69,19 +72,26 @@ function AutocompleteSearch() {
     };
   }, [searchTerm]);
 
+  useEffect(() => {
+    if (location.pathname.includes('browse')) {
+      setSearchTerm('');
+    }
+  }, [location]);
+
   return (
     <form
       id="search-form"
       onSubmit={ submitSearch }
+      className="flex place-items-center"
     >
 
-      <div className="relative">
+      <div className="relative w-full">
         <div { ...getComboboxProps() }>
           <input
             { ...getInputProps() }
             value={ searchTerm }
-            className="bg-gray-200 w-full sm:w-80 border-2 border-gray-200 rounded py-2 px-4 text-gray-700
-          leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-2 sm:mb-0"
+            className="bg-gray-200 w-full sm:w-96 border-2 border-gray-200 rounded-3xl px-4 text-gray-700
+            leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-4 md:mb-0 mt-2 md:mt-0 p-3"
             id="search-input"
             placeholder="Search..."
             data-cnstrc-search-input
@@ -90,8 +100,8 @@ function AutocompleteSearch() {
         <div data-cnstrc-autosuggest>
           <ul
             { ...getMenuProps() }
-            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-10%] flex gap-4 sm:gap-2 border"
-            style={ !isOpen || !searchTerm ? { visibility: 'hidden' } : { } }
+            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-30%] flex gap-4 sm:gap-2 border"
+            style={ !isOpen || !searchTerm ? { display: 'none' } : { } }
           >
 
             {isOpen && (

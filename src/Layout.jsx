@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createContext, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Outlet, useLocation, useNavigate, useSearchParams,
+} from 'react-router-dom';
 import ConstructorLogo from './components/ConstructorLogo';
 import AutocompleteSearch from './components/AutocompleteSearch';
 import FiltersMobile from './components/Filters/FiltersMobile';
@@ -20,6 +22,8 @@ export const FiltersContext = createContext({});
 
 function Layout() {
   const location = useLocation();
+  const [params] = useSearchParams();
+  const query = params?.get('q');
   const navigate = useNavigate();
   const [facets, setFacets] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -52,13 +56,9 @@ function Layout() {
 
   return (
     <div className="text-lg sm:text-base">
-      <div className="flex flex-col sm:flex-row justify-between mb-2 sm:ml-auto sm:mr-auto">
+      <div className="flex flex-col sm:flex-row justify-between sm:ml-auto sm:mr-auto mb-2 md:mb-5">
         <ConstructorLogo />
         <AutocompleteSearch />
-        <div className="flex sm:block mx-auto sm:mx-0 w-full sm:w-auto">
-          <FiltersMobile groups={ groups } facets={ facets } />
-          <SortOptions sortOptions={ sortOptions } />
-        </div>
       </div>
       <MainNavbar browseGroups={ browseGroups } />
       <div className="flex pb-10">
@@ -66,9 +66,20 @@ function Layout() {
           { !!groups.length && <GroupFilters groups={ groups } /> }
           { !!facets.length && <FacetFilters facets={ facets } /> }
         </div>
-        <FiltersContext.Provider value={ filtersContextValues }>
-          <Outlet />
-        </FiltersContext.Provider>
+        <div className="items-center">
+          <div className="flex flex-col sm:flex-row align-end justify-between items-center mb-6">
+            <h1 className="text-3xl order-2 md:order-1">
+              {query ? `Search results for “${query}”` : decodeURI(location.pathname.match(/[^/]+$/))}
+            </h1>
+            <div className="flex order-1 md:order-2 mb-4 md:mb-0 w-full md:w-auto gap-3">
+              <SortOptions sortOptions={ sortOptions } />
+              <FiltersMobile groups={ groups } facets={ facets } />
+            </div>
+          </div>
+          <FiltersContext.Provider value={ filtersContextValues }>
+            <Outlet />
+          </FiltersContext.Provider>
+        </div>
       </div>
     </div>
   );

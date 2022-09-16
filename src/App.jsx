@@ -13,7 +13,6 @@ function App() {
           path="/"
           element={ <Layout /> }
         >
-
           <Route
             path="search"
             element={ <Search /> }
