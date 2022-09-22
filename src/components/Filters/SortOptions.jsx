@@ -21,7 +21,7 @@ function SortOptions(props) {
   if (sortOptions?.length > 0) {
     return (
       <select
-        className="w-1/2 sm:w-auto cursor-pointer m-2 p-2 mr-0 sm:mr-2 border-2 rounded-lg outline-none"
+        className="w-1/2 sm:w-auto cursor-pointer p-2 mr-0 sm:mr-2 border-2 rounded-lg outline-none"
         onChange={ onChangeSorting }
         value={ selectedSort }
       >

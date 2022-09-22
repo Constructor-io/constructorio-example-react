@@ -30,6 +30,7 @@ function Layout() {
   const [sortOptions, setSortOptions] = useState([]);
   const [browseGroups, setBrowseGroups] = React.useState([]);
   const [rootBrowseGroupId, setRootBrowseGroupId] = React.useState([]);
+  const browseName = location.pathname.match(/[^/]+$/)?.[0];
 
   const filtersContextValues = React.useMemo(() => ({
     groups,
@@ -62,16 +63,17 @@ function Layout() {
       </div>
       <MainNavbar browseGroups={ browseGroups } />
       <div className="flex pb-10">
-        <div id="search-filters" className="w-[200px] hidden sm:block mr-5">
+        <div id="search-filters" className="w-[200px] hidden sm:block mr-5 p-2">
           { !!groups.length && <GroupFilters groups={ groups } /> }
           { !!facets.length && <FacetFilters facets={ facets } /> }
         </div>
-        <div className="items-center">
-          <div className="flex flex-col sm:flex-row align-end justify-between items-center mb-6">
-            <h1 className="text-3xl order-2 md:order-1">
-              {query ? `Search results for “${query}”` : decodeURI(location.pathname.match(/[^/]+$/))}
+        <div className="items-center w-full">
+          <div className="flex flex-col sm:flex-row align-end justify-between items-center sm:items-start mb-6">
+            <h1 className="text-3xl order-2 sm:order-1">
+              {query && `Search results for “${query}” `}
+              { browseName === 'browse' ? 'All' : decodeURI(browseName)}
             </h1>
-            <div className="flex order-1 md:order-2 mb-4 md:mb-0 w-full md:w-auto gap-3">
+            <div className="flex order-1 sm:order-2 mb-4 md:mb-0 w-full sm:w-auto gap-3">
               <SortOptions sortOptions={ sortOptions } />
               <FiltersMobile groups={ groups } facets={ facets } />
             </div>

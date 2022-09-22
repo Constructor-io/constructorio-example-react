@@ -91,7 +91,7 @@ function AutocompleteSearch() {
             { ...getInputProps() }
             value={ searchTerm }
             className="bg-gray-200 w-full sm:w-96 border-2 border-gray-200 rounded-3xl px-4 text-gray-700
-            leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-4 md:mb-0 mt-2 md:mt-0 p-3"
+            leading-tight focus:outline-none focus:bg-white focus:border-blue-800 mb-0 mt-2 md:mt-0 p-3"
             id="search-input"
             placeholder="Search..."
             data-cnstrc-search-input
@@ -100,12 +100,12 @@ function AutocompleteSearch() {
         <div data-cnstrc-autosuggest>
           <ul
             { ...getMenuProps() }
-            className="shadow-lg absolute p-4 list-none z-50 bg-white w-[800px] inset-x-0 sm:-left-1/2 sm:translate-x-[-30%] flex gap-4 sm:gap-2 border"
-            style={ !isOpen || !searchTerm ? { display: 'none' } : { } }
+            className="shadow-lg absolute right-0 py-8 px-8 list-none z-50 bg-white w-full md:w-[600px] lg:w-[1000px] flex flex-col md:flex-row gap-4 sm:gap-2 border"
+            style={ isOpen || !searchTerm ? { display: 'none' } : { } }
           >
-
-            {isOpen && (
+            {!isOpen && (
             <div className="basis-1/3">
+              <div className="text-lg font-bold mb-2">Search Suggestions</div>
               {searchSuggestions.map((item, index) => (
                 <li
                   data-cnstrc-item-section="Search Suggestions"
@@ -121,26 +121,29 @@ function AutocompleteSearch() {
             </div>
             )}
 
-            {isOpen && (
-            <div className="basis-2/3 grid gap-4 grid-cols-3">
-              {products.map((item, index) => (
-                <li
-                  data-cnstrc-item-section="Products"
-                  data-cnstrc-item-name={ item.value }
-                  data-cnstrc-item-id={ item.data?.id }
-                  className="basis-1/3 flex flex-col content-center space-x-2"
-                  key={ `${item.value} ${item.data?.id} ` }
-                  { ...getItemProps({ item, index: (index + searchSuggestions.length) }) }
-                >
-                  <div className="hover:underline">
-                    <img width="200" src={ item.data?.image_url } alt="" />
-                    <div className="text-sm">
-                      {item.value}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </div>
+            {!isOpen && (
+              <div>
+                <div className="text-lg font-bold mb-2">Products</div>
+                <div className="basis-2/3 grid gap-4 grid-cols-3">
+                  {products.map((item, index) => (
+                    <li
+                      data-cnstrc-item-section="Products"
+                      data-cnstrc-item-name={ item.value }
+                      data-cnstrc-item-id={ item.data?.id }
+                      className="basis-1/3 flex flex-col content-center space-x-2"
+                      key={ `${item.value} ${item.data?.id} ` }
+                      { ...getItemProps({ item, index: (index + searchSuggestions.length) }) }
+                    >
+                      <div className="hover:underline flex flex-col items-center sm:items-start">
+                        <img width="200" src={ item.data?.image_url } alt="" />
+                        <div className="text-sm">
+                          {item.value}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </div>
+              </div>
             )}
           </ul>
         </div>

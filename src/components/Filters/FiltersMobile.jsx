@@ -20,7 +20,7 @@ function FiltersMobile(props) {
     return (
       <div
         id="search-filters"
-        className="w-1/2 sm:hidden sm:mr-40 text-lg m-2 ml-0 sm:ml-2 border-2 rounded-lg"
+        className="w-1/2 sm:hidden sm:mr-40 text-lg ml-0 sm:ml-2 border-2 rounded-lg"
       >
         <button
           type="button"

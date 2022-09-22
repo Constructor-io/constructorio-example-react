@@ -21,8 +21,8 @@ function Results(props) {
       <div
         id="search-results"
         className="mb-4 flex flex-col sm:flex-row flex-wrap sm:grid sm:grid-cols-[repeat(2,225px)]
-                lg:grid-cols-[repeat(4,225px)] auto-rows-max justify-between gap-y-6 place-content-center
-                sm:place-content-start sm:justify-center gap-x-4 items-center md:items-start"
+                lg:grid-cols-[repeat(4,225px)] auto-rows-max gap-y-6 place-content-center
+                items-center md:items-start justify-around md:justify-between"
         data-cnstrc-num-results={ totalResults }
         { ...dataAttributes }
       >
