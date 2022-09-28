@@ -101,9 +101,9 @@ function AutocompleteSearch() {
           <ul
             { ...getMenuProps() }
             className="shadow-lg absolute right-0 py-8 px-8 list-none z-50 bg-white w-full md:w-[600px] lg:w-[1000px] flex flex-col md:flex-row gap-4 sm:gap-2 border"
-            style={ isOpen || !searchTerm ? { display: 'none' } : { } }
+            style={ !isOpen || !searchTerm ? { display: 'none' } : { } }
           >
-            {!isOpen && (
+            {isOpen && (
             <div className="basis-1/3">
               <div className="text-lg font-bold mb-2">Search Suggestions</div>
               {searchSuggestions.map((item, index) => (
@@ -121,7 +121,7 @@ function AutocompleteSearch() {
             </div>
             )}
 
-            {!isOpen && (
+            {isOpen && (
               <div>
                 <div className="text-lg font-bold mb-2">Products</div>
                 <div className="basis-2/3 grid gap-4 grid-cols-3">

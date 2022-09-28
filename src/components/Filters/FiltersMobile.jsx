@@ -38,7 +38,7 @@ function FiltersMobile(props) {
           <span className="mx-2">Filter</span>
         </button>
         {filterButtonToggle && (
-          <div className="bg-white border-t-2 border-b-2 z-10 p-4 absolute w-full h-full top-0 left-0 overflow-y-auto">
+          <div className="bg-white border-t-2 border-b-2 z-10 p-4 fixed w-full h-full top-0 left-0 overflow-y-auto">
             <button
               type="button"
               className="text-bold flex items-center absolute right-0 mr-4"

@@ -20,7 +20,7 @@ function Results(props) {
     <div className="flex flex-col grow mt-8">
       <div
         id="search-results"
-        className="mb-4 flex flex-col sm:flex-row flex-wrap sm:grid sm:grid-cols-[repeat(2,225px)]
+        className="mb-4 flex flex-col sm:flex-row flex-wrap sm:grid sm:grid-cols-[repeat(2,225px)] md:grid-cols-[repeat(3,225px)]
                 lg:grid-cols-[repeat(4,225px)] auto-rows-max gap-y-6 place-content-center
                 items-center md:items-start justify-around md:justify-between"
         data-cnstrc-num-results={ totalResults }
