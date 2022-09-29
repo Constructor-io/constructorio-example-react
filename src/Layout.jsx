@@ -30,7 +30,11 @@ function Layout() {
   const [sortOptions, setSortOptions] = useState([]);
   const [browseGroups, setBrowseGroups] = React.useState([]);
   const [rootBrowseGroupId, setRootBrowseGroupId] = React.useState([]);
-  const browseName = location.pathname.match(/[^/]+$/)?.[0];
+  let browseName = location.pathname.match(/[^/]+$/)?.[0];
+
+  if (browseName === 'search') {
+    browseName = '';
+  }
 
   const filtersContextValues = React.useMemo(() => ({
     groups,
@@ -70,8 +74,8 @@ function Layout() {
         <div className="items-center w-full">
           <div className="flex flex-col sm:flex-row align-end justify-between items-center sm:items-start mb-6">
             <h1 className="text-3xl order-2 sm:order-1">
-              {query && `Search results for “${query}” `}
-              { browseName === 'browse' ? 'All' : decodeURI(browseName)}
+              {query && `Search results for "${query}" `}
+              { browseName === 'browse' ? 'All' : decodeURI(browseName) }
             </h1>
             <div className="flex order-1 sm:order-2 mb-4 md:mb-0 w-full sm:w-auto gap-3">
               <SortOptions sortOptions={ sortOptions } />

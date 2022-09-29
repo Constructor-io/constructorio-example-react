@@ -31,6 +31,11 @@ function AutocompleteSearch() {
       setSearchTerm(inputValue);
     },
     onSelectedItemChange({ selectedItem }) {
+      // Item is product - do nothing
+      if (selectedItem.data.id) {
+        return;
+      }
+
       setSearchTerm(selectedItem.value);
       navigate(`/search?q=${selectedItem.value}`);
     },
