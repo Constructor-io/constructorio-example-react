@@ -10,7 +10,7 @@ function App() {
     <div className="App p-5 max-w-lg sm:max-w-7xl mx-auto">
       <Routes>
         <Route
-          path="/"
+          path="*"
           element={ <Layout /> }
         >
           <Route
