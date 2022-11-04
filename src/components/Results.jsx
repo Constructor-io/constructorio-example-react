@@ -73,11 +73,11 @@ function Results(props) {
         isOpen={ modalIsOpen }
       >
         <button onClick={ closeModal } type="button" className="text-4xl absolute right-10">&#215;</button>
-        <div className="bg-white p-4 flex items-start mt-4 mb-20">
+        <div className="bg-white p-4 flex items-start mt-4 mb-20 justify-between">
           <div className="w-2/3">
-            <img className="w-full h-[400px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
+            <img className="w-2/3 h-[400px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
           </div>
-          <div className="flex flex-col mt-16">
+          <div className="flex flex-col mt-28">
             <div className="text-3xl md:text-3xl mb-4 font-bold">
               {currentProduct?.value}
             </div>

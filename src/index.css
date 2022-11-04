@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .ReactModal__Content {
-  overflow: hidden !important;
+  position: relative;
+  max-width: 800px;
+  inset: 90px !important;
+  margin: 0 auto;
+  max-height: 900px;
 }

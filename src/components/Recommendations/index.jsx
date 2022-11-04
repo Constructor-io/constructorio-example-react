@@ -1,10 +1,7 @@
 import * as React from 'react';
-
 import { useEffect, useState } from 'react';
-
 import { fetchRecommendations } from '../../utils';
 import { loadStatuses } from '../../utils/constants';
-// eslint-disable-next-line import/no-cycle
 import RecommendationsResults from './RecommendationsResults';
 
 function Recommendations() {
@@ -36,7 +33,7 @@ function Recommendations() {
   }, []);
 
   return (
-    <div>
+    <div className="p-4">
       <div className="text-lg md:text-2xl mb-6 text-center">{podData?.podName}</div>
       { loaded === loadStatuses.SUCCESS && (
         <RecommendationsResults
