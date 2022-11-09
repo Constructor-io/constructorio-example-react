@@ -72,13 +72,13 @@ function Results(props) {
       <Modal
         isOpen={ modalIsOpen }
       >
-        <button onClick={ closeModal } type="button" className="text-4xl absolute right-10">&#215;</button>
-        <div className="bg-white p-4 flex items-start mt-4 mb-20 justify-between">
-          <div className="w-2/3">
-            <img className="w-2/3 h-[400px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
+        <button onClick={ closeModal } type="button" className="text-4xl absolute right-5 md:right-10">&#215;</button>
+        <div className="bg-white p-0 md:p-4 flex items-center md:items-start mt-20 md:mt-4 mb-20 justify-between">
+          <div className="w-1/2 md:w-2/3 md:mt-0 mr-10 md:mr-0">
+            <img className="w-full md:w-2/3 md:h-[400px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
           </div>
-          <div className="flex flex-col mt-28">
-            <div className="text-3xl md:text-3xl mb-4 font-bold">
+          <div className="w-1/2 flex flex-col md:mt-28">
+            <div className="text-1xl md:text-3xl mb-4 font-bold">
               {currentProduct?.value}
             </div>
             <div className="text-3xl">

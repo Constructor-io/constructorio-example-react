@@ -9,3 +9,9 @@
   margin: 0 auto;
   max-height: 900px;
 }
+
+@media screen and (max-width: 1250px)  {
+  .ReactModal__Content {
+    inset: 10px !important;
+  }
+}

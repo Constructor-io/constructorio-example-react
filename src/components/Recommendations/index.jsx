@@ -33,7 +33,7 @@ function Recommendations() {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="md:p-4">
       <div className="text-lg md:text-2xl mb-6 text-center">{podData?.podName}</div>
       { loaded === loadStatuses.SUCCESS && (
         <RecommendationsResults
