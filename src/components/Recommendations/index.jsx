@@ -33,8 +33,8 @@ function Recommendations() {
   }, []);
 
   return (
-    <div className="md:p-4">
-      <div className="text-lg md:text-2xl mb-6 text-center">{podData?.podName}</div>
+    <div className="m-10 border-t-2 border-gray-200">
+      <div className="text-lg mb-5 text-center mt-10 italic">{podData?.podName}</div>
       { loaded === loadStatuses.SUCCESS && (
         <RecommendationsResults
           items={ recommendations }

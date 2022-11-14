@@ -1,8 +1,8 @@
 import React from 'react';
 
 function RecommendationCard({ product }) {
-  const imageTagClassesLoading = 'w-[100px] md:w-[150px] transition-opacity opacity-0 ml-auto mr-auto';
-  const imageTagClassesLoaded = 'w-[100px] md:w-[150px] transition-opacity opacity-100 ml-auto mr-auto';
+  const imageTagClassesLoading = 'h-[100px] md:h-[150px] transition-opacity opacity-0 ml-auto mr-auto';
+  const imageTagClassesLoaded = 'h-[100px] md:h-[150px] transition-opacity opacity-100 ml-auto mr-auto';
 
   return (
     <div

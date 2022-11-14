@@ -71,19 +71,27 @@ function Results(props) {
       )}
       <Modal
         isOpen={ modalIsOpen }
+        style={ {
+          content: {
+            maxHeight: 660,
+          },
+        } }
       >
         <button onClick={ closeModal } type="button" className="text-4xl absolute right-5 md:right-10">&#215;</button>
-        <div className="bg-white p-0 md:p-4 flex items-center md:items-start mt-20 md:mt-4 mb-20 justify-between">
-          <div className="w-1/2 md:w-2/3 md:mt-0 mr-10 md:mr-0">
-            <img className="w-full md:w-2/3 md:h-[400px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
+        <div className="bg-white p-1 pb-0 md:pb-0 md:p-4 mb-5 flex items-center mt-4 justify-between">
+          <div className="w-1/2 md:w-1/3 mr-10">
+            <img className="w-full h-[200px] object-contain" alt="product" src={ currentProduct?.data.image_url } />
           </div>
-          <div className="w-1/2 flex flex-col md:mt-28">
-            <div className="text-1xl md:text-3xl mb-4 font-bold">
+          <div className="w-1/2 md:w-2/3 flex flex-col mt-5">
+            <div className="md:text-3xl text-2xl mb-4 font-bold">
               {currentProduct?.value}
             </div>
-            <div className="text-3xl">
+            <div className="text-2xl text-gray-400">
               $
               {currentProduct?.data.price}
+            </div>
+            <div>
+              <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">Add to cart</button>
             </div>
           </div>
         </div>
