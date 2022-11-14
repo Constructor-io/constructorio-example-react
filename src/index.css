@@ -4,7 +4,7 @@
 
 .ReactModal__Content {
   position: relative;
-  max-width: 800px;
+  max-width: 1024px;
   inset: 90px !important;
   margin: 0 auto;
   max-height: 660px;
