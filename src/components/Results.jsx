@@ -71,11 +71,6 @@ function Results(props) {
       )}
       <Modal
         isOpen={ modalIsOpen }
-        style={ {
-          content: {
-            maxHeight: 660,
-          },
-        } }
       >
         <button onClick={ closeModal } type="button" className="text-4xl absolute right-5 md:right-10">&#215;</button>
         <div className="bg-white p-1 pb-0 md:pb-0 md:p-4 mb-5 flex items-center mt-4 justify-between">

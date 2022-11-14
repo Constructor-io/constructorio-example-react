@@ -7,11 +7,17 @@
   max-width: 800px;
   inset: 90px !important;
   margin: 0 auto;
-  max-height: 900px;
+  max-height: 660px;
 }
 
 @media screen and (max-width: 1250px)  {
   .ReactModal__Content {
-    inset: 10px !important;
+    inset: 50px !important;
+  }
+}
+
+@media screen and (max-width: 500px)  {
+  .ReactModalPortal {
+    display: none;
   }
 }
