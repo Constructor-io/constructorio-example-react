@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductCard({ product }) {
+function ProductCard({ product, onProductClick }) {
   const imageTagClassesLoading = 'w-[225px] md:w-[300px] transition-opacity opacity-0 ml-auto mr-auto';
   const imageTagClassesLoaded = 'w-[225px] md:w-[300px] transition-opacity opacity-100 ml-auto mr-auto';
 
@@ -10,6 +10,10 @@ function ProductCard({ product }) {
       data-cnstrc-item-id={ product.data.id }
       data-cnstrc-item-name={ product.value }
       data-cnstrc-item-variation-id={ product.data?.variation_id }
+      onClick={ () => onProductClick(product) }
+      onKeyDown={ (e) => e.key === 'Enter' && onProductClick(product) }
+      role="button"
+      tabIndex={ 0 }
     >
       <div className="mb-1 h-[225px]">
         <img
@@ -22,6 +26,7 @@ function ProductCard({ product }) {
       </div>
       {product.value}
     </div>
+
   );
 }
 

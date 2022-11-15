@@ -14,7 +14,7 @@ function Browse() {
   const location = useLocation();
   const browseGroup = location.state;
 
-  const [loadStatus, setLoadStatus] = useState(loadStatuses.SUCCESS);
+  const [loadStatus, setLoadStatus] = useState(loadStatuses.STALE);
   const [items, setItems] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [error, setError] = useState();

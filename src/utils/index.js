@@ -74,3 +74,9 @@ export const fetchBrowseReults = async (filterName, filterValue) => {
 
   return response.response;
 };
+
+export const fetchRecommendations = async (podId) => {
+  const response = await cioClient.recommendations.getRecommendations(podId, { numResults: 6 });
+
+  return response;
+};
