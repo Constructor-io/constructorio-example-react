@@ -47,7 +47,6 @@ div.cio-autocomplete input.cio-input:focus {
 }
 
 div.cio-autocomplete ul.cio-results {
-  background-color: red;
   display: flex; 
   position: absolute; 
   right: 0; 
@@ -60,9 +59,9 @@ div.cio-autocomplete ul.cio-results {
   list-style-type: none; 
   flex-direction: column; 
   width: 100%; 
+  border-width: 1px;
   gap: 1rem; 
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-  background-color: red;
 }
 
 div.cio-autocomplete .Search.Suggestions.cio-section {
@@ -82,7 +81,7 @@ div.cio-autocomplete h5.cio-sectionName {
 
 div.cio-autocomplete .Products.cio-section .cio-section-items {
   display: grid; 
-  grid-template-columns: repeat(3, minmax(0, 1fr)); 
+  grid-template-columns: repeat(4, minmax(0, 1fr)); 
   gap: 1rem;
 }
 

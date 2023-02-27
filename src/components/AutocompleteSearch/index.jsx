@@ -17,23 +17,11 @@ function AutocompleteSearch() {
     }
   };
 
-  const sections = [
-    {
-      identifier: 'Search Suggestions',
-      numResults: 10,
-    },
-    {
-      identifier: 'Products',
-      numResults: 6,
-    },
-  ];
-
   return (
     <CioAutocomplete
       cioJsClient={ cioClient }
       onSubmit={ submitSearch }
       placeholder="Search..."
-      sections={ sections }
     />
   );
 }
