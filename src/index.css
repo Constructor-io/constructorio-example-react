@@ -10,6 +10,136 @@
   max-height: 660px;
 }
 
+div.cio-autocomplete .cio-submit-btn, .cio-clear-btn {
+  display: none;
+}
+
+
+div.cio-autocomplete {
+  width: 100%;
+}
+
+div.cio-autocomplete, div.cio-autocomplete form.cio-form {
+  width: 100%;
+}
+
+div.cio-autocomplete input.cio-input {
+  line-height: 1.25;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgb(229 231 235);
+  border-color: rgb(229 231 235);
+  border-width: 2px;
+  border-radius: 1.5rem;
+  margin-bottom: 0px;
+  margin-top: 0.5rem;
+  width: 100%; 
+  color: #374151; 
+}
+
+div.cio-autocomplete input.cio-input:focus {
+  background-color: #FFF;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-color: rgb(30 64 175);
+}
+
+div.cio-autocomplete ul.cio-results {
+  background-color: red;
+  display: flex; 
+  position: absolute; 
+  right: 0; 
+  z-index: 50; 
+  padding-top: 2rem;
+  padding-bottom: 2rem; 
+  padding-left: 2rem;
+  padding-right: 2rem; 
+  background-color: #ffffff; 
+  list-style-type: none; 
+  flex-direction: column; 
+  width: 100%; 
+  gap: 1rem; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+  background-color: red;
+}
+
+div.cio-autocomplete .Search.Suggestions.cio-section {
+  flex-basis: 33.333333%;
+}
+
+div.cio-autocomplete .Products.cio-section {
+  flex-basis: 66.666667%;
+}
+
+div.cio-autocomplete h5.cio-sectionName {
+  margin-bottom: 0.5rem; 
+  font-size: 1.125rem;
+  line-height: 1.75rem; 
+  font-weight: 700;
+}
+
+div.cio-autocomplete .Products.cio-section .cio-section-items {
+  display: grid; 
+  grid-template-columns: repeat(3, minmax(0, 1fr)); 
+  gap: 1rem;
+}
+
+div.cio-autocomplete li.cio-item {
+  cursor: pointer;
+  padding: 5px;
+}
+
+div.cio-autocomplete .cio-item[aria-selected='true'] {
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 4px;
+}
+
+div.cio-autocomplete li.cio-item.cio-item-SearchSuggestions {
+  margin-bottom: 0.25rem; 
+}
+
+div.cio-autocomplete li.cio-item.cio-item-Products {
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+div.cio-autocomplete li.cio-item.cio-item-Products {
+  flex-basis: 33.333333%;
+  display: flex; 
+  margin-left: 0.5rem; 
+  flex-direction: column; 
+  align-content: center;
+}
+
+div.cio-autocomplete li.cio-item.cio-item-Products img{
+  width: 200px;
+  height: auto;
+}
+
+@media screen and (min-width: 640px) {
+  div.cio-autocomplete input.cio-input {
+    width: 24rem; 
+  }
+  div.cio-autocomplete ul.cio-results {
+    gap: 0.5rem; 
+  }
+}
+
+@media screen and (min-width: 768px) {
+  div.cio-autocomplete ul.cio-results {
+    flex-direction: row; 
+    width: 600px
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div.cio-autocomplete ul.cio-results {
+    width: 1000px
+  }
+}
+
 @media screen and (max-width: 1250px)  {
   .ReactModal__Content {
     inset: 50px !important;
@@ -21,3 +151,4 @@
     display: none;
   }
 }
+

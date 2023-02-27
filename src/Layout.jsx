@@ -61,7 +61,7 @@ function Layout() {
 
   return (
     <div className="text-lg sm:text-base">
-      <div className="flex flex-col sm:flex-row justify-between sm:ml-auto sm:mr-auto mb-2 md:mb-5">
+      <div className="flex flex-col sm:flex-row justify-between sm:ml-auto sm:mr-auto mb-2 md:mb-5 relative">
         <ConstructorLogo />
         <AutocompleteSearch />
       </div>
