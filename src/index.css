@@ -81,7 +81,7 @@ div.cio-autocomplete h5.cio-sectionName {
 
 div.cio-autocomplete .Products.cio-section .cio-section-items {
   display: grid; 
-  grid-template-columns: repeat(4, minmax(0, 1fr)); 
+  grid-template-columns: repeat(2, minmax(0, 1fr)); 
   gap: 1rem;
 }
 
@@ -123,6 +123,9 @@ div.cio-autocomplete li.cio-item.cio-item-Products img{
   }
   div.cio-autocomplete ul.cio-results {
     gap: 0.5rem; 
+  }
+  div.cio-autocomplete .Products.cio-section .cio-section-items {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); 
   }
 }
 
