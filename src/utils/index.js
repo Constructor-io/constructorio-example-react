@@ -44,11 +44,12 @@ export function parseUrlParameters() {
     if (key === 'filterValue') {
       searchResultsParameters.filterValue = value;
     }
-    // Standard functionality
-    // key is a query
     if (key === 'key') {
       searchResultsParameters.key = value;
     }
+
+    // Standard functionality
+    // key is a query
     if (key === 'q') {
       searchResultsParameters.query = value;
     }
