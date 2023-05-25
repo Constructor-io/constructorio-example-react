@@ -7,6 +7,7 @@ export function parseUrlParameters() {
   const { search } = window.location;
   const decodedURI = decodeURIComponent(search);
 
+  // Custom functionality - allows usage of cnstrc request urls in the search bar
   if (decodedURI.match(/cnstrc.com\/search\//)) {
     const reformattedUrl = decodedURI.replace(/\?q=.+search\/(.+)\?/, '?q=$1&');
 
@@ -16,6 +17,7 @@ export function parseUrlParameters() {
 
     urlSearchParams = new URLSearchParams(reformattedUrl);
   } else {
+    // Standard functionality
     urlSearchParams = new URLSearchParams(search);
   }
 
@@ -29,13 +31,21 @@ export function parseUrlParameters() {
 
   // eslint-disable-next-line
   for (const [key, value] of urlSearchParams) {
-    // key is a query
+    // Custom functionality - allows usage of cnstrc request urls in the search bar
+    if (key === 'i') {
+      searchResultsParameters.i = value;
+    }
+    if (key === 's') {
+      searchResultsParameters.s = value;
+    }
     if (key === 'filterName') {
       searchResultsParameters.filterName = value;
     }
     if (key === 'filterValue') {
       searchResultsParameters.filterValue = value;
     }
+    // Standard functionality
+    // key is a query
     if (key === 'key') {
       searchResultsParameters.key = value;
     }
@@ -70,12 +80,17 @@ export const fetchSearchResults = async () => {
     key,
     filterName,
     filterValue,
+    i,
+    s,
   } = parseUrlParameters();
   let response;
 
+  // Custom functionality - allows usage of cnstrc request urls in the search bar
   if (key) {
     const newCioClient = new ConstructorIOClient({
       apiKey: key,
+      clientId: i,
+      sessionId: s,
     });
 
     if (filterName && filterValue) {
@@ -84,6 +99,7 @@ export const fetchSearchResults = async () => {
       response = await newCioClient.search.getSearchResults(query, parameters);
     }
   } else {
+    // Standard functionality
     response = await cioClient.search.getSearchResults(query, parameters);
   }
 
