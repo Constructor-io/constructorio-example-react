@@ -76,6 +76,7 @@ export const fetchBrowseReults = async (filterName, filterValue) => {
 };
 
 export const fetchRecommendations = async (podId) => {
+  // To avoid zero results, we apply a filter to enable backfilling via "filtered_items" strategy
   const response = await cioClient.recommendations.getRecommendations(podId, { numResults: 6, filters: { group_id: 'AP01' } });
 
   return response;
