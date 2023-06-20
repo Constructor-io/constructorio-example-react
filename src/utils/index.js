@@ -38,6 +38,9 @@ export function parseUrlParameters() {
     if (key === 's') {
       searchResultsParameters.s = value;
     }
+    if (key === 'ui') {
+      searchResultsParameters.ui = value;
+    }
     if (key === 'filterName') {
       searchResultsParameters.filterName = value;
     }
@@ -83,6 +86,7 @@ export const fetchSearchResults = async () => {
     filterValue,
     i,
     s,
+    ui,
   } = parseUrlParameters();
   let response;
 
@@ -92,6 +96,7 @@ export const fetchSearchResults = async () => {
       apiKey: key,
       clientId: i,
       sessionId: s,
+      userId: ui,
     });
 
     if (filterName && filterValue) {
