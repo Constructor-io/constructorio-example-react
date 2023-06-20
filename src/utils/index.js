@@ -1,8 +1,26 @@
 /* eslint-disable import/prefer-default-export */
+import ConstructorIOClient from '@constructor-io/constructorio-client-javascript';
 import cioClient from '../app/cioClient';
 
 export function parseUrlParameters() {
-  const urlSearchParams = new URLSearchParams(window.location.search);
+  let urlSearchParams;
+  const { search } = window.location;
+  const decodedURI = decodeURIComponent(search);
+
+  // Custom functionality - allows usage of cnstrc request urls in the search bar
+  if (decodedURI.match(/cnstrc.com\/search\//)) {
+    const reformattedUrl = decodedURI.replace(/\?q=.+search\/(.+)\?/, '?q=$1&');
+
+    urlSearchParams = new URLSearchParams(reformattedUrl);
+  } else if (decodedURI.match(/cnstrc.com\/browse\//)) {
+    const reformattedUrl = decodedURI.replace(/\?q=.+browse\/([^/]+)\/([^/]+)\?/, '?filterName=$1&filterValue=$2&');
+
+    urlSearchParams = new URLSearchParams(reformattedUrl);
+  } else {
+    // Standard functionality
+    urlSearchParams = new URLSearchParams(search);
+  }
+
   const searchResultsParameters = {
     parameters: {
       filters: {},
@@ -13,6 +31,27 @@ export function parseUrlParameters() {
 
   // eslint-disable-next-line
   for (const [key, value] of urlSearchParams) {
+    // Custom functionality - allows usage of cnstrc request urls in the search bar
+    if (key === 'i') {
+      searchResultsParameters.i = value;
+    }
+    if (key === 's') {
+      searchResultsParameters.s = value;
+    }
+    if (key === 'ui') {
+      searchResultsParameters.ui = value;
+    }
+    if (key === 'filterName') {
+      searchResultsParameters.filterName = value;
+    }
+    if (key === 'filterValue') {
+      searchResultsParameters.filterValue = value;
+    }
+    if (key === 'key') {
+      searchResultsParameters.key = value;
+    }
+
+    // Standard functionality
     // key is a query
     if (key === 'q') {
       searchResultsParameters.query = value;
@@ -39,8 +78,36 @@ export function parseUrlParameters() {
 }
 
 export const fetchSearchResults = async () => {
-  const { query, parameters } = parseUrlParameters();
-  const response = await cioClient.search.getSearchResults(query, parameters);
+  const {
+    query,
+    parameters,
+    key,
+    filterName,
+    filterValue,
+    i,
+    s,
+    ui,
+  } = parseUrlParameters();
+  let response;
+
+  // Custom functionality - allows usage of cnstrc request urls in the search bar
+  if (key) {
+    const newCioClient = new ConstructorIOClient({
+      apiKey: key,
+      clientId: i,
+      sessionId: s,
+      userId: ui,
+    });
+
+    if (filterName && filterValue) {
+      response = await newCioClient.browse.getBrowseResults(filterName, filterValue, parameters);
+    } else {
+      response = await newCioClient.search.getSearchResults(query, parameters);
+    }
+  } else {
+    // Standard functionality
+    response = await cioClient.search.getSearchResults(query, parameters);
+  }
 
   return response.response;
 };
