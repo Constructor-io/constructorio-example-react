@@ -1,8 +1,8 @@
 import React from 'react';
 
 function ProductCard({ product, onProductClick }) {
-  const imageTagClassesLoading = 'w-[225px] md:w-[300px] transition-opacity opacity-0 ml-auto mr-auto';
-  const imageTagClassesLoaded = 'w-[225px] md:w-[300px] transition-opacity opacity-100 ml-auto mr-auto';
+  const imageTagClassesLoading = 'w-[225px] md:w-[300px] h-[225px] t-cover transition-opacity opacity-0 ml-auto mr-auto';
+  const imageTagClassesLoaded = 'w-[225px] md:w-[300px] h-[225px] object-cover transition-opacity opacity-100 ml-auto mr-auto';
 
   return (
     <div

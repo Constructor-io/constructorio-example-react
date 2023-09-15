@@ -1,7 +1,7 @@
 import ConstructorIOClient from '@constructor-io/constructorio-client-javascript';
 
 const cioClient = new ConstructorIOClient({
-  apiKey: 'key_jaqzPcUDnK66puIO', // Integrations Chapter - React Example
+  apiKey: 'key_x6UnCVRZaJgIHFQD', // Tiku's Threads
 });
 
 export default cioClient;
