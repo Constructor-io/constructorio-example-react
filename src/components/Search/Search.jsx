@@ -36,6 +36,7 @@ function Search() {
       }
     };
 
+    setPage(1);
     fetchSearchResultsFromAPI();
   }, [location]);
 
