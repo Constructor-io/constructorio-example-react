@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/constructorio-react-example/static/css/main.702c8149.css",
-    "main.js": "/constructorio-react-example/static/js/main.4ae05a2a.js",
+    "main.css": "/constructorio-react-example/static/css/main.0f1af9df.css",
+    "main.js": "/constructorio-react-example/static/js/main.0ce95aa4.js",
     "static/media/revicons.eot": "/constructorio-react-example/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/constructorio-react-example/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/constructorio-react-example/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/constructorio-react-example/index.html",
-    "main.702c8149.css.map": "/constructorio-react-example/static/css/main.702c8149.css.map",
-    "main.4ae05a2a.js.map": "/constructorio-react-example/static/js/main.4ae05a2a.js.map"
+    "main.0f1af9df.css.map": "/constructorio-react-example/static/css/main.0f1af9df.css.map",
+    "main.0ce95aa4.js.map": "/constructorio-react-example/static/js/main.0ce95aa4.js.map"
   },
   "entrypoints": [
-    "static/css/main.702c8149.css",
-    "static/js/main.4ae05a2a.js"
+    "static/css/main.0f1af9df.css",
+    "static/js/main.0ce95aa4.js"
   ]
 }
