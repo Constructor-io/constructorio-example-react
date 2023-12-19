@@ -1,13 +1,13 @@
 {
-  "name": "constructorio-react-example",
+  "name": "constructorio-example-react",
   "version": "1.3.3",
   "description": "A React sandbox example for integrating with Constructor",
   "author": "constructor.io",
   "license": "MIT",
-  "homepage": "https://constructor-io.github.io/constructorio-react-example/",
+  "homepage": "https://constructor-io.github.io/constructorio-example-react/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Constructor-io/constructorio-react-example.git"
+    "url": "git+https://github.com/Constructor-io/constructorio-example-react.git"
   },
   "dependencies": {
     "@constructor-io/constructorio-client-javascript": "^2.29.8",
