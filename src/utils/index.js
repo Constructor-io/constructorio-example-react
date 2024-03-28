@@ -63,7 +63,7 @@ export function parseUrlParameters() {
       searchResultsParameters.parameters.sortOrder = value;
     }
     // key is a filter
-    const filterMatch = key.match(/filters\[(\w+)\]/);
+    const filterMatch = key.match(/filters\[(.*?)\]/);
 
     if (filterMatch?.length) {
       searchResultsParameters.parameters.filters[filterMatch?.[1]] = value.split(',');
