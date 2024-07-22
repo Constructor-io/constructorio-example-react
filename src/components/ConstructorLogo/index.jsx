@@ -11,7 +11,7 @@ function ConstructorLogo() {
       <img
         width="180"
         height="40"
-        src="https://constructor.io/wp-content/uploads/2018/11/group-1.svg"
+        src="https://constructor.com/hubfs/Website%20-%202024/Logos/Logo-black.svg"
         alt=""
       />
     </Link>
