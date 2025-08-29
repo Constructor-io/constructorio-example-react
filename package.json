@@ -64,5 +64,9 @@
       "nth-check": "^2.0.1"
     },
     "postcss": "$postcss"
+  },
+  "volta": {
+    "node": "22.18.0",
+    "npm": "10.9.3"
   }
 }
