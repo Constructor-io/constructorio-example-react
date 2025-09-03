@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
@@ -14,8 +12,12 @@ const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
 module.exports = function (proxy, allowedHost) {
-  const disableFirewall =
-    !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';
+  const disableFirewall = !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';
+  const httpsConfig = getHttpsConfig();
+
+  const server = typeof httpsConfig === 'boolean'
+    ? { type: httpsConfig ? 'https' : 'http' }
+    : { type: 'https', options: httpsConfig };
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -59,7 +61,7 @@ module.exports = function (proxy, allowedHost) {
       // for some reason broken when imported through webpack. If you just want to
       // use an image, put it in `src` and `import` it from JavaScript instead.
       directory: paths.appPublic,
-      publicPath: [paths.publicUrlOrPath],
+      publicPath: paths.publicUrlOrPath,
       // By default files from `contentBase` will not trigger a page reload.
       watch: {
         // Reportedly, this avoids CPU overload on some systems.
@@ -74,9 +76,9 @@ module.exports = function (proxy, allowedHost) {
         // Enable custom sockjs pathname for websocket connection to hot reloading server.
         // Enable custom sockjs hostname, pathname and port for websocket connection
         // to hot reloading server.
-        hostname: sockHost,
-        pathname: sockPath,
-        port: sockPort,
+        hostname: sockHost || 'localhost',
+        pathname: sockPath || '/ws',
+        port: sockPort || 0,
       },
       overlay: {
         errors: true,
@@ -91,7 +93,7 @@ module.exports = function (proxy, allowedHost) {
       publicPath: paths.publicUrlOrPath.slice(0, -1),
     },
 
-    https: getHttpsConfig(),
+    server,
     host,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
@@ -101,27 +103,24 @@ module.exports = function (proxy, allowedHost) {
     },
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy,
-    onBeforeSetupMiddleware(devServer) {
-      // Keep `evalSourceMapMiddleware`
-      // middlewares before `redirectServedPath` otherwise will not have any effect
-      // This lets us fetch source contents from webpack for the error overlay
-      devServer.app.use(evalSourceMapMiddleware(devServer));
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
+
+      middlewares.unshift(evalSourceMapMiddleware(devServer));
 
       if (fs.existsSync(paths.proxySetup)) {
-        // This registers user provided middleware for proxy reasons
+        // eslint-disable-next-line
         require(paths.proxySetup)(devServer.app);
       }
-    },
-    onAfterSetupMiddleware(devServer) {
-      // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
-      devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
 
-      // This service worker file is effectively a 'no-op' that will reset any
-      // previous service worker registered for the same host:port combination.
-      // We do this in development to avoid hitting the production cache if
-      // it used the same host and port.
-      // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-      devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+      middlewares.push(
+        redirectServedPath(paths.publicUrlOrPath),
+        noopServiceWorkerMiddleware(paths.publicUrlOrPath),
+      );
+
+      return middlewares;
     },
   };
 };
