@@ -22,12 +22,16 @@ function Search() {
 
       try {
         const response = await fetchSearchResults();
+        const { pod } = response;
+
+        if (!pod) {
+          setSortOptions(response.sort_options.map((item) => ({ ...item, id: `${item.sort_by}_${item.sort_order}` })));
+        }
 
         setLoadStatus(loadStatuses.LOADING);
         setItems(response.results);
-        setSortOptions(response.sort_options.map((item) => ({ ...item, id: `${item.sort_by}_${item.sort_order}` })));
-        setFacets(response.facets);
-        setGroups(response.groups);
+        setFacets(response.facets || []);
+        setGroups(response.groups || []);
         setTotalResults(response.total_num_results);
         setLoadStatus(loadStatuses.SUCCESS);
       } catch (e) {

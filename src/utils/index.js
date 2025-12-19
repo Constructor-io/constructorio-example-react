@@ -14,7 +14,9 @@ export function parseUrlParameters() {
     urlSearchParams = new URLSearchParams(reformattedUrl);
   } else if (decodedURI.match(/cnstrc.com\/browse\//)) {
     const reformattedUrl = decodedURI.replace(/\?q=.+browse\/([^/]+)\/([^/]+)\?/, '?filterName=$1&filterValue=$2&');
-
+    urlSearchParams = new URLSearchParams(reformattedUrl);
+  } else if (decodedURI.match(/cnstrc.com\/recommendations\//)) {
+    const reformattedUrl = decodedURI.replace(/\?q=.+recommendations\/v1\/pods\/([^?]+)\?/, '?pod=$1&');
     urlSearchParams = new URLSearchParams(reformattedUrl);
   } else {
     // Standard functionality
@@ -49,6 +51,9 @@ export function parseUrlParameters() {
     }
     if (key === 'key') {
       searchResultsParameters.key = value;
+    }
+    if (key === 'pod') {
+      searchResultsParameters.pod = value;
     }
 
     // Standard functionality
@@ -87,6 +92,7 @@ export const fetchSearchResults = async () => {
     i,
     s,
     ui,
+    pod,
   } = parseUrlParameters();
   let response;
 
@@ -101,6 +107,8 @@ export const fetchSearchResults = async () => {
 
     if (filterName && filterValue) {
       response = await newCioClient.browse.getBrowseResults(filterName, filterValue, parameters);
+    } else if (pod) {
+      response = await newCioClient.recommendations.getRecommendations(pod, parameters);
     } else {
       response = await newCioClient.search.getSearchResults(query, parameters);
     }
