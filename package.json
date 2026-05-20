@@ -65,7 +65,7 @@
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.4.0",
     "webpack": "^5.105.0",
-    "webpack-dev-server": "^5.2.1",
+    "webpack-dev-server": "^5.2.4",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^7.4.0"
   },
