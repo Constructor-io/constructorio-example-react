@@ -10,7 +10,7 @@
     "url": "git+https://github.com/Constructor-io/constructorio-example-react.git"
   },
   "dependencies": {
-    "@babel/core": "^7.16.0",
+    "@babel/core": "^7.29.6",
     "@constructor-io/constructorio-client-javascript": "^2.29.8",
     "@constructor-io/constructorio-ui-autocomplete": "^1.7.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
